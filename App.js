@@ -2,6 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
 import MapView, { Marker, Polyline  } from 'react-native-maps';
 import { StyleSheet, Text, View, Dimensions} from 'react-native';
+import CameraView from './CameraView';
 
 const { width, height } = Dimensions.get("screen");
 
@@ -45,33 +46,36 @@ export default function App() {
     setMarkers(oldArray => [...oldArray, dados])
   }
 
+  // return (
+  //   <View style={styles.container}>
+  //     <MapView
+  //       style = {{width: width, height: height}}
+  //       region = {region}
+  //       zoomEnabled = {true}
+  //       minZoomLevel = {10}
+  //       showsUserLocation = {true}
+  //       loadingEnabled = {true}
+  //       onPress = {(e) => newMarker(e)}
+  //     >
+  //       {markers.map(marker => {
+  //         return (
+  //           <Marker key={marker.key} coordinate = {marker.coords} pinColor= {marker.pinColor} onPress = {() => 
+  //             alert("Latitude: "+ "\n"+
+  //              marker.coords.latitude + "\n" +
+  //              "Longitude: "+ "\n"+ 
+  //              marker.coords.longitude) } />
+  //         )
+  //       } )}
+  //       <Polyline
+  //         coordinates={markers.map(marker => { return { latitude: marker.coords.latitude, longitude: marker.coords.longitude }})}
+  //         strokeColor="#000"
+  //         strokeWidth={6}
+  //       /> 
+  //     </MapView>
+  //   </View>
+  // );
   return (
-    <View style={styles.container}>
-      <MapView
-        style = {{width: width, height: height}}
-        region = {region}
-        zoomEnabled = {true}
-        minZoomLevel = {10}
-        showsUserLocation = {true}
-        loadingEnabled = {true}
-        onPress = {(e) => newMarker(e)}
-      >
-        {markers.map(marker => {
-          return (
-            <Marker key={marker.key} coordinate = {marker.coords} pinColor= {marker.pinColor} onPress = {() => 
-              alert("Latitude: "+ "\n"+
-               marker.coords.latitude + "\n" +
-               "Longitude: "+ "\n"+ 
-               marker.coords.longitude) } />
-          )
-        } )}
-        <Polyline
-          coordinates={markers.map(marker => { return { latitude: marker.coords.latitude, longitude: marker.coords.longitude }})}
-          strokeColor="#000"
-          strokeWidth={6}
-        /> 
-      </MapView>
-    </View>
+    <CameraView></CameraView>
   );
 }
 
